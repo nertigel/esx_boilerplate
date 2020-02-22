@@ -1,5 +1,6 @@
 ESX              = nil
 local PlayerData = {}
+local isDead = false
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -16,4 +17,12 @@ end)
 RegisterNetEvent('esx:setJob')
 AddEventHandler('esx:setJob', function(job)
   PlayerData.job = job
+end)
+
+AddEventHandler('playerSpawned', function()
+    isDead = false
+end)
+
+AddEventHandler('esx:onPlayerDeath', function(data)
+    isDead = true
 end)
